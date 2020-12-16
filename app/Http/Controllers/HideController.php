@@ -9,49 +9,46 @@ use Illuminate\Support\Facades\Auth;
 
 class HideController extends Controller
 {
-    public function updateHide($post_id)
-    {
+    // public function updateHide($post_id)
+    // {
         
-        $input = [
-            'user_id' => Auth()->id(),
-            'post_id' => $post_id
-        ];
+    //     $input = [
+    //         'user_id' => Auth()->id(),
+    //         'post_id' => $post_id
+    //     ];
 
-        PostHide::create($input);
+    //     PostHide::create($input);
        
-        return redirect()->back()->with('info', 'Post Berhasil Disembunyikan!');
-    }
+    //     return redirect()->back()->with('info', 'Post Berhasil Disembunyikan!');
+    // }
 
    
     public function storeUpdate(Request $request, $id)
     {
+
+        
         if ( $request->tebak == 'hide'){
             $inputHide = [
                 'user_id' => Auth::user()->id,
                 'post_id' => $id,
-                'hide' => null
             ];
 
-            $check = PostHide::where('post_id', $id)->where('user', Auth::user()->id);
+            $check = PostHide::where('post_id', $id)->where('user_id', Auth::user()->id);
             if ($check->count() > 0){
                 $check->delete();
-                return redirect()->back()->with('info', 'U--hide');
+                return redirect()->back()->with('info', 'Post Berhasil Ditampilkan Kembali');
             }
         } else {
-            $inputHide = [
-                'user_id' => Auth::user()->id,
-                'post_id' => null,
-                'hide' => $id,
+                $inputHide = [
+                'user_id' => Auth()->id(),
+                'post_id' => $id
+        ];
 
-            ];
-
-            $check = PostHide::where('hide', $id)->where('user', Auth::user()->id);
-            if ( $check->delete());
-                return redirect()->back()->with('info', 'Unhide');
+              PostHide::create($inputHide);
+       
         
-        PostHide::create($inputHide);
           
-        return redirect()->back()->with('success', 'Like Success');
+        return redirect()->back()->with('success', 'Post Berhasil Disembunyikan!');
     }
 
 
