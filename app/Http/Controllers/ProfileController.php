@@ -14,9 +14,12 @@ class ProfileController extends Controller
 {
     public function index()
     {
-        $user = User::with('postUser')->find(Auth::user()->id);
+        $user = User::with('postUser', 'profileShow')->find(Auth::user()->id);
+        $pos = Post::with('postHides')->whereHas('postHides', function($query){
+            $query->where('user_id', auth()->id());
+            })->get();
 
-        return view('profile.index', compact('user'));
+        return view('profile.index', compact('user', 'pos'));
     }
 
     public function update( Request $request, $id)

@@ -34,6 +34,8 @@
             <div class="container mt-3">
                 <br>
                 <!-- Nav tabs -->
+                @if ($show->user_id == auth()->id())
+
                 <ul class="nav nav-tabs">
                   <li class="nav-item">
                     <a class="nav-link active" data-toggle="tab" href="#home">Data Post</a>
@@ -42,7 +44,7 @@
                     <a class="nav-link" data-toggle="tab" href="#menu1">Post Hide</a>
                   </li>
                 </ul>
-              
+              @endif
                 <!-- Tab panes -->
                 <div class="tab-content">
                   <div id="home" class="container tab-pane active"><br>

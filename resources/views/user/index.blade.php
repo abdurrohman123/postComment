@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('content')
 
+
 <div class="container">
     <form class="form-inline mr-auto" action="" method="GET">
         <input class="form-control mr-sm-2" type="text" placeholder="Search" name="cari" aria-label="Search"
