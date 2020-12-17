@@ -55,6 +55,9 @@ class ProfileController extends Controller
             $query->where('user_id', auth()->id());
             })->get();
     //    return $pos;
-        return view('profile.show', compact('show', 'pos'));
+        $like = Post::with('likes')->whereHas('likes', function($query){
+            $query->where('user_id', auth()->id());
+        })->get();
+        return view('profile.show', compact('show', 'pos', 'like'));
     }
 }

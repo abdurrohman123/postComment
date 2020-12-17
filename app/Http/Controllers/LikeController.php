@@ -23,10 +23,17 @@ class LikeController extends Controller
             $check = Like::where('post_id', $id)->where('user_id', Auth::user()->id);
             if ($check->count() > 0){
                 $check->delete();
+              
                 return redirect()->back()->with('info', 'Anda Telah Unlike');
             }
           
-
+        // @if(Auth::check)
+        // {
+        // $color = #fff;
+        // }@else
+        // {
+        // $color = #123;
+        // }
         } else {
             $inputLike = [
                 'user_id' => Auth::user()->id,
@@ -43,8 +50,10 @@ class LikeController extends Controller
         }
           
         Like::create($inputLike);
-          
+    
         return redirect()->back()->with('success', 'Like Success');
+
+        
 
         // $diCheck = Like::where('post_id', $post->id)->where('user_id', Auth::user()->id);
 

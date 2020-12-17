@@ -87,7 +87,15 @@
                     <p><img src="{{ $post->upload }}" class="img-thumbnail" width="50px"/></p>
                     <p>{{ Str::limit($post->content, 100,'....') }}</p>
                     <div class="panel-footer">
-                       <a href="/like/{{ $post->id }}?jenis=post"><span class="mdi mdi-thumb-up-outline"> {{$post->likes->count()}}</span></a> 
+                   
+                       @if ($post->user_id == auth()->id())
+                       <a href="/like/{{ $post->id }}?jenis=post"><span class="mdi mdi-thumb-up-outline text-secondary"> {{$post->likes->count()}}</span></a> 
+{{--                         
+                        @else
+                       <a href="/like/{{ $post->id }}?jenis=post"><span class="mdi mdi-thumb-up-outline text-danger"> {{$post->likes->count()}}</span></a>  --}}
+                        
+                       @endif
+
                        {{-- jad yang di maksud {{$post->likes->count()}} $post meruju ke variabel post yg ada di PostController Dan 
                        likes ini adalah yg sudah di relasikan di method index yg ada di kata (with) di PostController Dan Count untuk menghitung --}}
                        <a href="/post/{{ $post->slug }}"><span class="mdi mdi-comment-processing-outline"></span> {{$post->comments->count()}}</a> 

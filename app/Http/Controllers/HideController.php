@@ -44,7 +44,8 @@ class HideController extends Controller
                 'post_id' => $id
         ];
 
-              PostHide::create($inputHide);
+              
+        PostHide::create($inputHide);
        
         
           

@@ -47,6 +47,9 @@ class PostController extends Controller
                             ->orWhereDoesntHave('postHides');
                     })
                     ->get();
+        if ($color = 'mdi mdi-thumb-up-outline text-secondary');
+        else ($color = 'mdi mdi-thumb-up-outline text-danger');
+        
         // return $postz;
         
         // whereHas('participants', function ($query) {
