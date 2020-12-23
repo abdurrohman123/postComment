@@ -48,15 +48,17 @@ class PostController extends Controller
                     })
                     ->get();
 
-        $color = Post::find($request->id);
-        if($color = 'mdi mdi-thumb-up-outline text-secondary'){
+                    // return $postz;
+
+        // $color = Post::find($request->id);
+        // if($color = 'mdi mdi-thumb-up-outline text-secondary'){
            
-        }
-        else
-        {
-            ($color = 'mdi mdi-thumb-up-outline text-danger');
+        // }
+        // else
+        // {
+        //     ($color = 'mdi mdi-thumb-up-outline text-danger');
             
-        }
+        // }
         
         
         // return $color;

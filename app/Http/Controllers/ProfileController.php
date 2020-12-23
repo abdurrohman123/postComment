@@ -49,9 +49,10 @@ class ProfileController extends Controller
 
     public function show($email)
     {
-        $show = User::with('profileShow')->where('email', $email)->first();
+        $show = User::with('profileShow', 'comments', 'likes', 'posts', 'hideShows')->where('email', $email)->first();
+        // return $show;
 
-       $pos = Post::with('postHides')->whereHas('postHides', function($query){
+        $pos = Post::with('postHides')->whereHas('postHides', function($query){
             $query->where('user_id', auth()->id());
             })->get();
     //    return $pos;

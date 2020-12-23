@@ -88,21 +88,51 @@
                     <p>{{ Str::limit($post->content, 100,'....') }}</p>
                     <div class="panel-footer">
                    
-                        @if( )
-                       <a href="/like/{{ $post->id }}?jenis=post"><span class="mdi mdi-thumb-up-outline text-secondary"> {{$post->likes->count()}}</span></a> 
+                        @php
+                            $classerrrrrrr = 'text-danger';
+                            foreach ($post->likes as $like) {
+                                # code...
+                                    // echo $like->user_id;
+                                    if($like->user_id == Auth::user()->id )
+                                        $classerrrrrrr = 'text-secondary';
+                                }
+                            //     $class = 'text-secondary';
+                        @endphp
+                        {{-- @if( 'naonnnnnnnnnnnn' ) --}}
+                       <a href="/like/{{ $post->id }}?jenis=post"><span class="mdi mdi-thumb-up-outline {{ $classerrrrrrr }}"> {{$post->likes->count()}}</span></a> 
                             
-                        @else
-                       <a href="/like/{{ $post->id }}?jenis=post"><span class="mdi mdi-thumb-up-outline text-danger"> {{$post->likes->count()}}</span></a>
-                            
-                        @endif
-                         
-                      
                 
 
                        {{-- jad yang di maksud {{$post->likes->count()}} $post meruju ke variabel post yg ada di PostController Dan 
                        likes ini adalah yg sudah di relasikan di method index yg ada di kata (with) di PostController Dan Count untuk menghitung --}}
                        <a href="/post/{{ $post->slug }}"><span class="mdi mdi-comment-processing-outline"></span> {{$post->comments->count()}}</a> 
                        <a href="/report/{{ $post->id }}?pilih=post"><span class="mdi mdi-information-outline">Report  {{$post->reports->count()}}</span></a>
+                     <p>
+                           {{-- @php
+                           foreach ($post->comments as $comentar) {
+
+                               if ($comentar->user_id == Auth::user()->id ){
+                                echo $comentar->massage;
+                               # cod
+                                echo '<br>';
+                               }else {
+                                   echo 'komentar orang';
+                               }
+
+                               
+                           }
+                               
+                           @endphp  --}}
+
+                           {{-- @foreach ($post->comments as $comentar)
+                               @if ($comentar->user_id == Auth::user()->id)
+                                {{ $comentar->massage }}
+                                <br>
+                               @endif
+                           @endforeach --}}
+
+                    </p>
+
                     </div>
                 </div>
             </div>

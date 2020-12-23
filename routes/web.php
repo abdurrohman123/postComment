@@ -52,6 +52,7 @@ Route::patch('/comment/{id}/update',[CommentController::class, 'update'])->name(
 
 Route::get('/like/{jenis}/{id}',[LikeController::class, 'storeUpdate'])->name('like.store');
 Route::get('/like/{id}',[LikeController::class, 'storeUpdate'])->name('like.store');
+Route::get('/unlike/{id}',[LikeController::class, 'unlikeUpdate'])->name('unlike.store');
 
 
 Route::get('/report/{pilih}/{id}',[ReportController::class, 'storeUpdate'])->name('report.store');
@@ -71,7 +72,14 @@ Route::get('/user',[UserController::class, 'index'])->name('user.index');
 
 Route::get('/profile',[ProfileController::class, 'index'])->name('profile.index'); 
 Route::patch('/profile/{id}/update',[ProfileController::class, 'update'])->name('profile.update');
-Route::get('/profile/{email}',[ProfileController::class, 'show'])->name('profile.show'); 
+
+Route::get('/profile/{email}',[ProfileController::class, 'show'])->name('profile.show');
+
+Route::get('/profile#home',[ProfileController::class, 'show'])->name('profile.home'); 
+
+
+
+// Route::get('/profile/{email}',[ProfileController::class, 'show'])->name('profile.index'); 
 
 
 

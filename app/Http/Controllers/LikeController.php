@@ -26,14 +26,7 @@ class LikeController extends Controller
               
                 return redirect()->back()->with('info', 'Anda Telah Unlike');
             }
-          
-        // @if(Auth::check)
-        // {
-        // $color = #fff;
-        // }@else
-        // {
-        // $color = #123;
-        // }
+
         } else {
             $inputLike = [
                 'user_id' => Auth::user()->id,
@@ -50,24 +43,19 @@ class LikeController extends Controller
         }
           
         Like::create($inputLike);
-    
-        return redirect()->back()->with('success', 'Like Success');
-
         
-
-        // $diCheck = Like::where('post_id', $post->id)->where('user_id', Auth::user()->id);
-
-        // if ($diCheck->count() > 0 ){
-        //     $diCheck->delete();
-        //     return redirect()->back()->with('info', 'Anda Telah Unlike');
-        // }
-        // $like = [
-        //     'user_id' => Auth::user()->id,
-        //     'post_id' => $post->id,
-        // ];
-        // // return $like;
-        // Like::create($like);
-
-        // return redirect()->back()->with('success', 'Like Success');
+        return redirect()->back()->with('success', 'Like Success');
+    }
+  
+    public function unlikeUpdate (Request $request, $id)
+    {
+        if ( $request->pilih == 'unlike')
+        {
+            $check = Like::where('post_id', $id)->where('user_id', Auth::user()->id);
+            if ($check->count() > 0){
+                $check->delete();
+                return redirect()->back()->with('info', 'Unlike Berhasil');
+            }
+        }
     }
 }
